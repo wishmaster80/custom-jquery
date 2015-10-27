@@ -1,10 +1,12 @@
 
 cJQuery= 
-    function (selector)
-{    
+    function (selector) {
+
+        
         if (typeof selector == 'string') {
-            if (selector[0]== '.')
-                return new CustomjQuery(document.getElementsByClassName(selector.substring(1)));
+            return new CustomjQuery(document.querySelectorAll(selector));
+            //if (selector[0] == '.')
+            //    return new CustomjQuery(document.getElementsByClassName(selector.substring(1)));
         }
 
     return new CustomjQuery(selector);
@@ -16,7 +18,7 @@ function CustomjQuery(obj) {
     this.object = obj;
 }
 
-CustomjQuery.prototype.each = function (fun) {
+CustomjQuery.prototype.each = function (fun) {  
     for (var i = 0; i < this.object.length; i++) {
         var obj = this.object[i];
         fun.call(obj, i);
@@ -28,7 +30,7 @@ CustomjQuery.prototype.each = function (fun) {
 
 
 CustomjQuery.prototype.addClass = function (className) {
-    for (i = 0; i < this.object.length; i++) {
+    for (i = 0; i < this.object.length; i++) {        
         this.object[i].className += (" " + className);
     }    
     return this;
@@ -37,7 +39,9 @@ CustomjQuery.prototype.addClass = function (className) {
 CustomjQuery.prototype.html = function (html) {    
     if (typeof this.object.length == 'undefined') {
         this.object.innerHTML = html;
-    }    
+    }
+    //this.each.call(this, this.html);
+
     for (i = 0; i < this.object.length; i++) {
         this.object[i].innerHTML = html;
     }

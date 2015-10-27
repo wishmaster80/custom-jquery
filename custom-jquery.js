@@ -1,10 +1,11 @@
 
 cJQuery= 
     function (selector)
-{
-    console.log("selectot :" + selector + " | " + (typeof selector == 'string'));
-    if(typeof selector == 'string')
-        return new CustomjQuery( document.getElementsByClassName(selector));
+{    
+        if (typeof selector == 'string') {
+            if (selector[0]== '.')
+                return new CustomjQuery(document.getElementsByClassName(selector.substring(1)));
+        }
 
     return new CustomjQuery(selector);
 }
@@ -33,8 +34,7 @@ CustomjQuery.prototype.addClass = function (className) {
     return this;
 };
 
-CustomjQuery.prototype.html = function (html) {
-    console.log("html run: " + this.object);
+CustomjQuery.prototype.html = function (html) {    
     if (typeof this.object.length == 'undefined') {
         this.object.innerHTML = html;
     }    

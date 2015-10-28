@@ -2,16 +2,16 @@ Custom JQuery
 
 Your task is to implement minimal version of JQuery using DOM API Methods to implement:
 
-    addClass
+    addClass*
     append
-    html
+    html*
     attr
     children
     css
     data
     on
     one
-    each
+    each*
 
 Additional requirements:
 

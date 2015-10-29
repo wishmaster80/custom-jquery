@@ -3,11 +3,11 @@ Custom JQuery
 Your task is to implement minimal version of JQuery using DOM API Methods to implement:
 
     addClass*
-    append+
+    append*
     html*
-    attr+
-    children+
-    css+
+    attr*
+    children*
+    css*
     data-
     on+
     one-
@@ -28,3 +28,5 @@ $('.my-class')
     .css({
         backgroundColor: 'rebeccapurple'
     });
+.css( "background-color" )
+$('.my-class').children();

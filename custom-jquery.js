@@ -2,6 +2,9 @@
 cJQuery= 
     function (selector) {       
         if (typeof selector == 'string') {
+			// if (selector[0]== '.'){
+				// return new CustomjQuery(document.getElementsByClassName(selector.substring(1)));
+			// }
             return new CustomjQuery(document.querySelectorAll(selector));
         }
 
@@ -45,31 +48,30 @@ CustomjQuery.prototype.html = function (html) {
 };
 
 
-CustomjQuery.prototype.append = function (el) {    
-
+CustomjQuery.prototype.append = function (el) {    	
     this.runner(
-		function (el){		
+		function (el){					
 			this.appendChild(el);	}	
 		, el);
     return this;
 };
 
 CustomjQuery.prototype.attr = function (tabindex) {    
-    return this.getAttribute('tabindex');;
+    if (typeof this.object.length == 'undefined') {		
+		return this.object.getAttribute('tabindex');
+	}
+	return this.object[0].getAttribute('tabindex');
 };
 
 CustomjQuery.prototype.children = function () {    
-    return this.children;
+    if (typeof this.object.length == 'undefined') {		
+		this.object.children;
+	}
+    return this.object[0].children;
 };
 
 CustomjQuery.prototype.css = function (ruleName) {    
-
-    this.runner(
-		function (ruleName){					
-		getComputedStyle(this)[ruleName];
-	}	
-		, ruleName);
-    return this;
+	return  getComputedStyle(this.object[0])[ruleName];
 };
 
 CustomjQuery.prototype.on = function (eventName, eventHandler) {    
@@ -83,13 +85,13 @@ CustomjQuery.prototype.on = function (eventName, eventHandler) {
 };
 
 
-
 CustomjQuery.prototype.runner = function ( funx){	
 	if (typeof this.object.length == 'undefined') {		
 		funx.apply(this.object, Array.prototype.slice.call(arguments, 1));
 	}
 	else{
-		for (i = 0; i < this.object.length; i++) {
+		for (i = 0; i < this.object.length; i++) {			
+		console.log( this +" - " + i + " - " + this.object +" - "+ this.object[i]);
 		funx.apply(this.object[i], Array.prototype.slice.call(arguments, 1));
 		}
 	}

@@ -44,6 +44,46 @@ CustomjQuery.prototype.html = function (html) {
     return this;
 };
 
+
+CustomjQuery.prototype.append = function (el) {    
+
+    this.runner(
+		function (el){		
+			this.appendChild(el);	}	
+		, el);
+    return this;
+};
+
+CustomjQuery.prototype.attr = function (tabindex) {    
+    return this.getAttribute('tabindex');;
+};
+
+CustomjQuery.prototype.children = function () {    
+    return this.children;
+};
+
+CustomjQuery.prototype.css = function (ruleName) {    
+
+    this.runner(
+		function (ruleName){					
+		getComputedStyle(this)[ruleName];
+	}	
+		, ruleName);
+    return this;
+};
+
+CustomjQuery.prototype.on = function (eventName, eventHandler) {    
+
+    this.runner(
+		function (ventName, eventHandler){					
+		this.addEventListener(eventName, eventHandler);;
+	}	
+		, ventName, eventHandler);
+    return this;
+};
+
+
+
 CustomjQuery.prototype.runner = function ( funx){	
 	if (typeof this.object.length == 'undefined') {		
 		funx.apply(this.object, Array.prototype.slice.call(arguments, 1));
